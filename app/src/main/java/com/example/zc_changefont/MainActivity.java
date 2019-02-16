@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(ttf_list_size>0){
                     ttf_items= ttf_list.toArray(new String[ttf_list_size]);
-                    AlertDialog dialog = new AlertDialog.Builder(this).setTitle("单选对话框")
+                    AlertDialog dialog = new AlertDialog.Builder(this).setTitle("请选择字体文件")
                             .setSingleChoiceItems(ttf_items, ttf_index, new DialogInterface.OnClickListener() {
 
                                 @Override
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(txt_list_size>0){
                     txt_items= txt_list.toArray(new String[txt_list_size]);
-                    AlertDialog dialog = new AlertDialog.Builder(this).setTitle("单选对话框")
+                    AlertDialog dialog = new AlertDialog.Builder(this).setTitle("请选择文本文件")
                             .setSingleChoiceItems(txt_items, txt_index, new DialogInterface.OnClickListener() {
 
                                 @Override
@@ -360,7 +360,9 @@ public class MainActivity extends AppCompatActivity {
                         // Log.i("1111", "onScale: 缩小");
                          textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontsize-3);
                      }
-                         return false;
+
+                        // 此处要返回true   返回false会持续判断手指缩放事件，造成画面卡顿
+                         return true;
                      }
 
                  @Override
@@ -374,8 +376,9 @@ public class MainActivity extends AppCompatActivity {
                  @Override
                  public void onScaleEnd(ScaleGestureDetector detector)
                  {
-                         // TODO Auto-generated method stub
-                     }
+                         //缩放手势结束的时候调用这个方法
+
+                 }
 
            }
 
